@@ -5,5 +5,4 @@ export interface IDataPost {
   imgUrl: string;
   title: string;
   text: string;
-  href: string;
 }

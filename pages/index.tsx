@@ -1,13 +1,9 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import App from "../componentes/App";
+import HomePage from "../componentes/HomePage";
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <App/>
-    </div>
-  );
+  return <HomePage />;
 };
 
 export default Home;
