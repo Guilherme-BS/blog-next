@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 
 export default function NavBar() {
   return (
@@ -10,7 +10,7 @@ export default function NavBar() {
       textAlign="center"
       padding="0.5em"
     >
-      Rick and Morty News
+      <Text fontSize={{ base: '30px', md: '45px', lg: '60px' }}> Rick and Morty News</Text>
     </Heading>
   );
 }

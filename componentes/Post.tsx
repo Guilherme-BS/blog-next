@@ -11,10 +11,12 @@ export default function Post({ data: { id, imgUrl, title, text } }: dataType) {
     <Link href={`/${id}`}>
       <Box
         maxW="30vw"
-        maxH="55vh"
+        minW="300px"
+        maxH="320px"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
+        margin="auto"
       >
         <Image src={imgUrl} width="200px" height="200px" margin="auto" />
         <Box p="6">
