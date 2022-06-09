@@ -3,10 +3,12 @@ import { Image, Badge, Box } from "@chakra-ui/react";
 import { IDataPost } from "../types/types";
 import Link from "next/link";
 
-interface dataType {
+interface PostProps {
   data: IDataPost;
 }
-export default function Post({ data: { id, imgUrl, title, text } }: dataType) {
+export default function Post({
+  data: { id, imgUrl, title, newsText },
+}: PostProps) {
   return (
     <Link href={`/${id}`}>
       <Box
@@ -34,7 +36,7 @@ export default function Post({ data: { id, imgUrl, title, text } }: dataType) {
           >
             {title}
           </Box>
-          {text}
+          {newsText}
         </Box>
       </Box>
     </Link>

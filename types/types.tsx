@@ -4,5 +4,5 @@ export interface IDataPost {
   id: number;
   imgUrl: string;
   title: string;
-  text: string;
+  newsText: string;
 }
