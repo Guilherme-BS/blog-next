@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import postData from "../utils/post-data.json";
 import { Heading, Image, Text, Flex, Box } from "@chakra-ui/react";
 
-export default function PostOne() {
+export default function OnePost() {
   const router = useRouter();
 
   const postId = router.query.post;
