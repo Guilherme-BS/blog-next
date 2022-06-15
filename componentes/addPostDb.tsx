@@ -1,4 +1,5 @@
-
+import { collection, addDoc } from "firebase/firestore/lite";
+import { db } from "../service/firebase";
 import {
   Input,
   Heading,
@@ -10,9 +11,21 @@ import {
 import { useState } from "react";
 
 export default function AddPost() {
-  const [namePost, setNamePost] = useState("");
-  const [newsPost, setNewsPost] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [namePost, setNamePost] = useState<string>("");
+  const [newsPost, setNewsPost] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  async function addPostDb() {
+    try {
+      const docRef = await addDoc(collection(db, "post"), {
+        namePost,
+        newsPost,
+        imageUrl,
+      });
+    } catch (error) {
+      console.log(`Error adding document${error}`);
+    }
+  }
 
   return (
     <Flex alignItems="center" flexDirection="column">
@@ -22,19 +35,25 @@ export default function AddPost() {
         <Input
           id="first-name"
           placeholder="Name "
-          onChange={(e) => setNamePost(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNamePost(e.target.value)
+          }
         />
         <FormLabel htmlFor="first-name">News</FormLabel>
         <Input
           id="first-name"
           placeholder="News"
-          onChange={(e) => setNewsPost(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNewsPost(e.target.value)
+          }
         />
         <FormLabel htmlFor="first-name">Image Url</FormLabel>
         <Input
           id="first-name"
           placeholder="Image"
-          onChange={(e) => setImageUrl(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setImageUrl(e.target.value)
+          }
         />
       </FormControl>
       <Button
@@ -46,6 +65,7 @@ export default function AddPost() {
         border="2px"
         borderColor="black"
         margin="1.5rem"
+        onClick={addPostDb}
       >
         Create
       </Button>
