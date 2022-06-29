@@ -1,13 +1,13 @@
 import React from "react";
 import { Image, Badge, Box } from "@chakra-ui/react";
-import { IDataPost } from "../types/types";
+import { IPostData } from "../types/types";
 import Link from "next/link";
 
 interface PostProps {
-  data: IDataPost;
+  data: IPostData;
 }
 export default function Post({
-  data: { id, imgUrl, title, newsText },
+  data: { id, imageUrl, namePost, newsPost },
 }: PostProps) {
   return (
     <Link href={`/${id}`}>
@@ -20,7 +20,7 @@ export default function Post({
         overflow="hidden"
         margin="auto"
       >
-        <Image src={imgUrl} width="200px" height="200px" margin="auto" />
+        <Image src={imageUrl} width="200px" height="200px" margin="auto" />
         <Box p="6">
           <Box display="flex" alignItems="baseline">
             <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -34,9 +34,9 @@ export default function Post({
             lineHeight="tight"
             noOfLines={1}
           >
-            {title}
+            {namePost}
           </Box>
-          {newsText}
+          {newsPost}
         </Box>
       </Box>
     </Link>

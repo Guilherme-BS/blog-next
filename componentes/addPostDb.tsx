@@ -18,6 +18,7 @@ export default function AddPost() {
   async function addPostDb() {
     try {
       const docRef = await addDoc(collection(db, "post"), {
+        id: Math.random(),
         namePost,
         newsPost,
         imageUrl,
@@ -25,6 +26,9 @@ export default function AddPost() {
     } catch (error) {
       console.log(`Error adding document${error}`);
     }
+    setNamePost('')
+    setNewsPost('')
+    setImageUrl('')
   }
 
   return (
@@ -35,6 +39,7 @@ export default function AddPost() {
         <Input
           id="first-name"
           placeholder="Name "
+          value={namePost}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNamePost(e.target.value)
           }
@@ -43,6 +48,7 @@ export default function AddPost() {
         <Input
           id="first-name"
           placeholder="News"
+          value={newsPost}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNewsPost(e.target.value)
           }
@@ -51,6 +57,7 @@ export default function AddPost() {
         <Input
           id="first-name"
           placeholder="Image"
+          value={imageUrl}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setImageUrl(e.target.value)
           }

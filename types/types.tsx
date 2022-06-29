@@ -1,8 +1,8 @@
 import React from "react";
 
-export interface IDataPost {
+export interface IPostData {
   id: number;
-  imgUrl: string;
-  title: string;
-  newsText: string;
+  imageUrl: string;
+  namePost: string;
+  newsPost: string;
 }
