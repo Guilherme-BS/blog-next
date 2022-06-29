@@ -30,8 +30,6 @@ export const BlogContextProvider = ({ children }: DataContextProps) => {
   }, []);
 
   return (
-    <BlogContext.Provider value={{ dbPost }}>
-      {children}
-    </BlogContext.Provider>
+    <BlogContext.Provider value={{ dbPost }}>{children}</BlogContext.Provider>
   );
 };

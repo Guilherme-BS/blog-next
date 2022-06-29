@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Post from "./Post";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import NavBar from "./NavBar";

@@ -4,7 +4,7 @@ import { Heading, Image, Text, Flex, Box } from "@chakra-ui/react";
 import { BlogContext } from "../utils/BlogContext";
 
 export default function OnePost() {
-  const {dbPost} = useContext(BlogContext)
+  const { dbPost } = useContext(BlogContext);
   const router = useRouter();
 
   const postId = router.query.post;

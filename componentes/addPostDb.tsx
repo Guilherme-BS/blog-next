@@ -26,9 +26,9 @@ export default function AddPost() {
     } catch (error) {
       console.log(`Error adding document${error}`);
     }
-    setNamePost('')
-    setNewsPost('')
-    setImageUrl('')
+    setNamePost("");
+    setNewsPost("");
+    setImageUrl("");
   }
 
   return (
