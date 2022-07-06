@@ -8,59 +8,81 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useReducer } from "react";
+// cria os tipos e a funcao necessaria para ultiliar o useReducer
+type State = {
+  namePost: string;
+  newsPost: string;
+  imageUrl: string;
+};
 
+type Action = { type: string; playload?: string; key?: string };
+
+const initialState: State = { namePost: "", newsPost: "", imageUrl: "" };
+
+function reducer(state: State, action: Action) {
+  switch (action.type) {
+    case "input_text":
+      if (action.key) return {
+        ...state,
+        [action.key]: action.playload
+      };
+    case "reset":
+      return initialState;
+    default:
+      return state;
+  }
+}
 export default function AddPost() {
-  const [namePost, setNamePost] = useState<string>("");
-  const [newsPost, setNewsPost] = useState<string>("");
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [state, dispatch] = useReducer(reducer, initialState);
+  //responsavel por salvar os dados no state
+  const handlePostData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: "input_text",
+      playload: e.target.value,
+      key: e.target.id,
+    });
+  };
 
   async function addPostDb() {
     try {
       const docRef = await addDoc(collection(db, "post"), {
         id: Math.random(),
-        namePost,
-        newsPost,
-        imageUrl,
+        namePost: state.namePost,
+        newsPost: state.newsPost,
+        imageUrl: state.imageUrl,
       });
     } catch (error) {
       console.log(`Error adding document${error}`);
     }
-    setNamePost("");
-    setNewsPost("");
-    setImageUrl("");
+    dispatch({
+      type: "reset",
+    });
   }
-
   return (
     <Flex alignItems="center" flexDirection="column">
       <Heading textAlign="center">Adicione um Post</Heading>
       <FormControl isRequired width={"700px"} margin="auto">
         <FormLabel htmlFor="first-name">Name of Post </FormLabel>
         <Input
-          id="first-name"
+          id="namePost"
           placeholder="Name "
-          value={namePost}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setNamePost(e.target.value)
-          }
+          value={state.namePost}
+          onChange={(e) => handlePostData(e)}
         />
         <FormLabel htmlFor="first-name">News</FormLabel>
         <Input
-          id="first-name"
+          id="newsPost"
           placeholder="News"
-          value={newsPost}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setNewsPost(e.target.value)
-          }
+          value={state.newsPost}
+          onChange={(e) => handlePostData(e)}
         />
         <FormLabel htmlFor="first-name">Image Url</FormLabel>
         <Input
-          id="first-name"
+          id="imageUrl"
           placeholder="Image"
-          value={imageUrl}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setImageUrl(e.target.value)
-          }
+          value={state.imageUrl}
+          onChange={(e) => handlePostData(e)}
         />
       </FormControl>
       <Button
