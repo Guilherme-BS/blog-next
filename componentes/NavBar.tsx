@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Text } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 export default function NavBar() {
   return (
@@ -11,7 +11,7 @@ export default function NavBar() {
       padding="2rem"
       fontSize={{ base: "30px", md: "45px", lg: "60px" }}
     >
-      Rick and Morty News
+      PodCodar Blog
     </Heading>
   );
 }
