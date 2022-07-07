@@ -11,7 +11,7 @@ export default function NavBar() {
       padding="2rem"
       fontSize={{ base: "30px", md: "45px", lg: "60px" }}
     >
-      Rick and Morty News
+      PodCodar Blog
     </Heading>
   );
 }
