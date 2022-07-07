@@ -1,5 +1,6 @@
 import { collection, addDoc } from "firebase/firestore/lite";
 import { db } from "../service/firebase";
+import useBlog from "../utils/BlogContext";
 import {
   Input,
   Heading,
@@ -8,35 +9,15 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import { useReducer } from "react";
+
 // cria os tipos e a funcao necessaria para ultiliar o useReducer
-type State = {
-  namePost: string;
-  newsPost: string;
-  imageUrl: string;
-};
 
-type Action = { type: string; playload?: string; key?: string };
-
-const initialState: State = { namePost: "", newsPost: "", imageUrl: "" };
-
-function reducer(state: State, action: Action) {
-  switch (action.type) {
-    case "input_text":
-      if (action.key) return {
-        ...state,
-        [action.key]: action.playload
-      };
-    case "reset":
-      return initialState;
-    default:
-      return state;
-  }
-}
 export default function AddPost() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  //responsavel por salvar os dados no state
-  const handlePostData = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const { state, dispatch } = useBlog();
+  //responsavel capturar e salvar os dados no state
+
+  const captureInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: "input_text",
       playload: e.target.value,
@@ -59,6 +40,7 @@ export default function AddPost() {
       type: "reset",
     });
   }
+
   return (
     <Flex alignItems="center" flexDirection="column">
       <Heading textAlign="center">Adicione um Post</Heading>
@@ -68,21 +50,21 @@ export default function AddPost() {
           id="namePost"
           placeholder="Name "
           value={state.namePost}
-          onChange={(e) => handlePostData(e)}
+          onChange={(e) => captureInputValue(e)}
         />
         <FormLabel htmlFor="first-name">News</FormLabel>
         <Input
           id="newsPost"
           placeholder="News"
           value={state.newsPost}
-          onChange={(e) => handlePostData(e)}
+          onChange={(e) => captureInputValue(e)}
         />
         <FormLabel htmlFor="first-name">Image Url</FormLabel>
         <Input
           id="imageUrl"
           placeholder="Image"
           value={state.imageUrl}
-          onChange={(e) => handlePostData(e)}
+          onChange={(e) => captureInputValue(e)}
         />
       </FormControl>
       <Button

@@ -4,10 +4,11 @@ import { IPostData } from "../types/types";
 import Link from "next/link";
 
 interface PostProps {
-  data: IPostData;
+  postInfo: IPostData;
 }
+
 export default function Post({
-  data: { id, imageUrl, namePost, newsPost },
+  postInfo: { id, imageUrl, namePost, newsPost },
 }: PostProps) {
   return (
     <Link href={`/${id}`}>

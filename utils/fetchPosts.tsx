@@ -1,8 +1,4 @@
-import {
-  collection,
-  getDocs,
-  query,
-} from "firebase/firestore/lite";
+import { collection, getDocs, query } from "firebase/firestore/lite";
 import { db } from "../service/firebase";
 import { IPostData } from "../types/types";
 

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { Heading, Image, Text, Flex, Box } from "@chakra-ui/react";
-import { BlogContext } from "../utils/BlogContext";
+import useBlog from "../utils/BlogContext";
 
 export default function OnePost() {
-  const { dbPost } = useContext(BlogContext);
+  const { dbPost } = useBlog();
   const router = useRouter();
 
   const postId = router.query.post;
